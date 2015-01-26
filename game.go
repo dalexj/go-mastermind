@@ -1,14 +1,28 @@
 package main
 
-const colors = "rgby"
+import (
+	"math/rand"
+)
 
-type game struct {
-	code    string
-	guesses int
+type Game struct {
+	Code    string
+	Guesses int
 }
 
-func (g game) isValidGuess(guess string) bool {
-	if len(guess) != len(g.code) {
+func NewGame() *Game {
+	colors := []string{"r", "g", "b", "y"}
+	code := ""
+	for i := 0; i < len(colors); i++ {
+		code += colors[rand.Intn(len(colors))]
+	}
+	return &Game{
+		Code: code,
+		Guesses: 0,
+	}
+}
+
+func (g Game) IsValidGuess(guess string) bool {
+	if len(guess) != len(g.Code) {
 		return false
 	}
 	for i := 0; i < len(guess); i++ {
@@ -17,18 +31,18 @@ func (g game) isValidGuess(guess string) bool {
 	return true
 }
 
-func (g *game) guess(guess string) int {
-	g.guesses++
-	return g.numCorrect(guess)
+func (g *Game) Guess(guess string) int {
+	g.Guesses++
+	return g.NumCorrect(guess)
 }
 
-func (g game) numCorrect(guess string) int {
-	if len(g.code) != len(guess) {
+func (g Game) NumCorrect(guess string) int {
+	if len(g.Code) != len(guess) {
 		return 0
 	}
 	count := 0
-	for i := 0; i < len(g.code); i++ {
-		if g.code[i] == guess[i] {
+	for i, _ := range g.Code {
+		if g.Code[i] == guess[i] {
 			count++
 		}
 	}

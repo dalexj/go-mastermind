@@ -15,14 +15,14 @@ func getInput(prompt string) string {
 }
 
 func main() {
-	mastermind := game{code: "rrrr"}
+	mastermind := NewGame()
 	for {
 		input := getInput("Enter a 4 color guess: ")
 
-		numCorrect := mastermind.guess(input)
+		numCorrect := mastermind.Guess(input)
 
-		fmt.Println("guesses:", mastermind.guesses)
-		fmt.Println("You got ", numCorrect, " correct colors")
+		fmt.Println("guesses:", mastermind.Guesses)
+		fmt.Printf("You got %d correct colors\n\n", numCorrect)
 
 		if numCorrect == 4 {
 			fmt.Println("You win, go home.")
