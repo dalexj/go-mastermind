@@ -15,7 +15,7 @@ func getInput(prompt string) string {
 }
 
 func main() {
-	mastermind := game{code: "rrrr", guesses: 0}
+	mastermind := game{code: "rrrr"}
 	for {
 		input := getInput("Enter a 4 color guess: ")
 
