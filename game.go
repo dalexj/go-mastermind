@@ -3,12 +3,12 @@ package main
 const colors = "rgby"
 
 type game struct {
-	code string
+	code    string
 	guesses int
 }
 
-func(g game) isValidGuess(guess string) bool {
-	if len(guess) != len(g.code){
+func (g game) isValidGuess(guess string) bool {
+	if len(guess) != len(g.code) {
 		return false
 	}
 	for i := 0; i < len(guess); i++ {
@@ -17,17 +17,17 @@ func(g game) isValidGuess(guess string) bool {
 	return true
 }
 
-func(g game) guess(guess string) int {
-	
+func (g game) guess(guess string) int {
+	g.guesses++
 	return g.numCorrect(guess)
 }
 
-func(g game) numCorrect(guess string) int {
+func (g game) numCorrect(guess string) int {
 	if len(g.code) != len(guess) {
 		return 0
 	}
 	count := 0
-	for i:=0;i<len(g.code);i++ {
+	for i := 0; i < len(g.code); i++ {
 		if g.code[i] == guess[i] {
 			count++
 		}
