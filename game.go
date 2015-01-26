@@ -2,7 +2,10 @@ package main
 
 import (
 	"math/rand"
+	"strings"
 )
+
+const colors = "rgby"
 
 type Game struct {
 	Code    string
@@ -10,13 +13,12 @@ type Game struct {
 }
 
 func NewGame() *Game {
-	colors := []string{"r", "g", "b", "y"}
 	code := ""
 	for i := 0; i < len(colors); i++ {
-		code += colors[rand.Intn(len(colors))]
+		code += string(colors[rand.Intn(len(colors))])
 	}
 	return &Game{
-		Code: code,
+		Code:    code,
 		Guesses: 0,
 	}
 }
@@ -26,7 +28,9 @@ func (g Game) IsValidGuess(guess string) bool {
 		return false
 	}
 	for i := 0; i < len(guess); i++ {
-		// if colors //if !colors.include? guess[i] return false
+		if !strings.Contains(colors, string(guess[i])) {
+			return false
+		}
 	}
 	return true
 }

@@ -19,6 +19,11 @@ func main() {
 	for {
 		input := getInput("Enter a 4 color guess: ")
 
+		if !mastermind.IsValidGuess(input) {
+			fmt.Println("That was not a valid guess\n")
+			continue;
+		}
+
 		numCorrect := mastermind.Guess(input)
 
 		fmt.Println("guesses:", mastermind.Guesses)
