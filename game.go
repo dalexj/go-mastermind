@@ -18,7 +18,7 @@ func(g game) isValidGuess(guess string) bool {
 }
 
 func(g game) guess(guess string) int {
-	g.guesses++
+	
 	return g.numCorrect(guess)
 }
 
